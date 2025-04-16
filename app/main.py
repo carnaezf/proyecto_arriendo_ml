@@ -3,7 +3,7 @@ from pydantic import BaseModel
 import joblib
 
 # Cargar el modelo serializado
-modelo = joblib.load("modelo_arriendo_chile.pkl")
+modelo = joblib.load("app/modelo_arriendo_chile.pkl")
 
 # Instancia de FastAPI
 app = FastAPI(title="API de Predicción de Arriendo en Chile")
