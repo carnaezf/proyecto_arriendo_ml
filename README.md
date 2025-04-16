@@ -21,7 +21,7 @@ proyecto_arriendo_ml/
 │   └── main.py                      ← Código de la API con entrenamiento integrado
 ├── data/
 ├── notebooks/
-│   └── entrenamiento_modelo_colab.ipynb  ← Recurso opcional en Google Colab
+│   └── entrenamiento_modelo_colab.ipynb  
 ├── requirements.txt
 ├── .gitignore
 ├── README.md
