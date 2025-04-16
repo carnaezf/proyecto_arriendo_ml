@@ -1,42 +1,14 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
-import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 
-def entrenar_modelo():
-    np.random.seed(42)
-    n = 300
-    comunas = ['Santiago', 'Providencia', 'Maipú', 'Las Condes', 'Puente Alto']
-    tipos = ['Departamento', 'Casa']
-
-    df = pd.DataFrame({
-        'comuna': np.random.choice(comunas, n),
-        'tipo': np.random.choice(tipos, n),
-        'superficie': np.random.randint(30, 150, n),
-        'habitaciones': np.random.randint(1, 5, n),
-        'baños': np.random.randint(1, 3, n)
-    })
-
-    base_price = {
-        'Santiago': 300000,
-        'Providencia': 450000,
-        'Maipú': 250000,
-        'Las Condes': 500000,
-        'Puente Alto': 220000
-    }
-
-    df['precio'] = (
-        df['superficie'] * 4200 +
-        df['habitaciones'] * 50000 +
-        df['baños'] * 30000 +
-        df['comuna'].map(base_price) +
-        np.random.normal(0, 50000, n)
-    ).astype(int)
+def entrenar_modelo_desde_csv():
+    df = pd.read_csv("data/arriendos_chile_simulado.csv")
 
     X = df.drop("precio", axis=1)
     y = df["precio"]
@@ -53,9 +25,9 @@ def entrenar_modelo():
     pipeline.fit(X, y)
     return pipeline
 
-modelo = entrenar_modelo()
+modelo = entrenar_modelo_desde_csv()
 
-app = FastAPI(title="API de Predicción de Arriendo (modelo en memoria)")
+app = FastAPI(title="API de Predicción de Arriendo (desde CSV)")
 
 class DatosArriendo(BaseModel):
     comuna: str
