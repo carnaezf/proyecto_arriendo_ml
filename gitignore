@@ -1,0 +1,25 @@
+# Ignorar el entorno virtual
+amb_proyecto_arriendo_ml/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+
+# Datos
+*.pkl
+*.csv
+data/
+
+# Notebooks temporales
+.ipynb_checkpoints/
+
+# IDEs y editores
+.vscode/
+.idea/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
